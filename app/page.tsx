@@ -1,62 +1,84 @@
 export default function Home() {
   return (
-    <main className="min-h-screen scroll-smooth">
+    <main className="min-h-screen bg-neutral-50 text-neutral-800">
 
       {/* HERO */}
-      <section className="h-screen flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-5xl font-bold mb-6">
-          Cozy Oven Bakery
-        </h1>
-        <p className="text-lg max-w-xl mb-8">
-          Handmade cinnabons, strudels and savory pies baked fresh daily in Tyumen.
-        </p>
-        <div className="flex gap-4">
-          <a href="#menu" className="px-6 py-3 border rounded-xl">
-            View Menu
-          </a>
-          <a href="#delivery" className="px-6 py-3 border rounded-xl">
+      <section className="py-28 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            Cozy Oven Bakery
+          </h1>
+          <p className="text-lg md:text-xl mb-8 text-neutral-600">
+            Fresh handmade pastries in the heart of Tyumen.
+            Warm taste. Fair price. Real comfort.
+          </p>
+
+          <a
+            href="#order"
+            className="inline-block px-10 py-4 bg-neutral-900 text-white rounded-2xl text-lg font-medium shadow-md hover:scale-105 transition"
+          >
             Order Delivery
           </a>
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section className="py-20 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-semibold mb-6">About Us</h2>
-        <p>
-          We bake everything fresh every morning using quality ingredients.
-          Cozy Oven is about homemade taste, premium quality at fair prices,
-          and a warm atmosphere that makes you come back again and again.
-        </p>
+      {/* WHY US */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 text-center">
+
+          <div className="bg-white p-8 rounded-2xl shadow-sm">
+            <h3 className="text-xl font-semibold mb-3">Fresh Daily</h3>
+            <p className="text-neutral-600">
+              We bake every morning to ensure quality and softness in every bite.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-2xl shadow-sm">
+            <h3 className="text-xl font-semibold mb-3">Affordable</h3>
+            <p className="text-neutral-600">
+              Premium taste without premium prices. Average order — 500 RUB.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 rounded-2xl shadow-sm">
+            <h3 className="text-xl font-semibold mb-3">Loyalty Bonuses</h3>
+            <p className="text-neutral-600">
+              Cashback system and welcome bonuses for every new customer.
+            </p>
+          </div>
+
+        </div>
       </section>
 
       {/* MENU */}
-      <section id="menu" className="py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-12">Our Menu</h2>
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto text-center mb-14">
+          <h2 className="text-4xl font-bold">Our Menu</h2>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
 
-          <div className="border p-6 rounded-2xl">
-            <h3 className="text-xl font-bold mb-4">Cinnabons</h3>
-            <ul className="space-y-2">
+          <div className="p-8 rounded-2xl border bg-neutral-50">
+            <h3 className="text-2xl font-semibold mb-4">Cinnabons</h3>
+            <ul className="space-y-2 text-neutral-600">
               <li>Classic (Bestseller)</li>
               <li>Berry</li>
               <li>Chocolate</li>
             </ul>
           </div>
 
-          <div className="border p-6 rounded-2xl">
-            <h3 className="text-xl font-bold mb-4">Strudels</h3>
-            <ul className="space-y-2">
+          <div className="p-8 rounded-2xl border bg-neutral-50">
+            <h3 className="text-2xl font-semibold mb-4">Strudels</h3>
+            <ul className="space-y-2 text-neutral-600">
               <li>Apple & Walnut</li>
               <li>Chocolate & Walnut</li>
               <li>Sweet Cheese & Cherry</li>
             </ul>
           </div>
 
-          <div className="border p-6 rounded-2xl">
-            <h3 className="text-xl font-bold mb-4">Savory Pies</h3>
-            <ul className="space-y-2">
+          <div className="p-8 rounded-2xl border bg-neutral-50">
+            <h3 className="text-2xl font-semibold mb-4">Savory Pies</h3>
+            <ul className="space-y-2 text-neutral-600">
               <li>Chicken, Mushroom & Cheese</li>
               <li>Classic Cabbage</li>
             </ul>
@@ -65,45 +87,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* DELIVERY */}
-      <section id="delivery" className="py-20 px-6 text-center">
-        <h2 className="text-3xl font-semibold mb-6">Get Cozy at Home</h2>
-        <p className="mb-6">
-          Order through Yandex.Eda or Delivery Club and enjoy fresh pastries wherever you are.
-        </p>
-        <button className="px-6 py-3 border rounded-xl">
-          Order Now
-        </button>
-      </section>
+      {/* ORDER SECTION */}
+      <section id="order" className="py-28 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl font-bold mb-6">
+            Get Cozy at Home
+          </h2>
 
-      {/* LOYALTY */}
-      <section className="py-20 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-semibold mb-6">Cozy Bonuses</h2>
-        <ul className="space-y-3">
-          <li>+30 welcome bonuses</li>
-          <li>3% cashback on every purchase</li>
-          <li>Bonuses never expire</li>
-          <li>Pay up to 50% with bonuses</li>
-        </ul>
-      </section>
+          <p className="text-lg text-neutral-600 mb-10">
+            Order online, pay securely, and enjoy fresh pastries delivered to your door.
+          </p>
 
-      {/* B2B */}
-      <section className="py-20 px-6 text-center">
-        <h2 className="text-3xl font-semibold mb-6">Corporate Breakfast</h2>
-        <p className="mb-6">
-          Pre-order via Telegram before 5:00 PM and pick up in the morning.
-          Minimum order 1500 RUB. Organizers get double bonuses.
-        </p>
-        <button className="px-6 py-3 border rounded-xl">
-          Order for Office
-        </button>
+          <button className="px-12 py-4 bg-neutral-900 text-white rounded-2xl text-lg font-medium shadow-md hover:scale-105 transition">
+            Place Order
+          </button>
+        </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="py-10 text-center border-t">
-        <p>Central Tyumen • 8:00 AM – 9:00 PM</p>
-        <p>Instagram | Telegram</p>
-        <p className="mt-4 text-sm">© 2024 Cozy Oven Bakery</p>
+      <footer className="py-12 text-center border-t text-neutral-500">
+        <p>Central Tyumen</p>
+        <p>8:00 AM – 9:00 PM</p>
+        <p className="mt-4 text-sm">© 2026 Cozy Oven Bakery</p>
       </footer>
 
     </main>
