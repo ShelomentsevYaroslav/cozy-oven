@@ -1,28 +1,16 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import "./globals.css";
-
-const geist = Geist({
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Cozy Oven Bakery",
-  description: "Fresh handmade pastries in the heart of Tyumen.",
-};
+import "./globals.css"
+import { CartProvider } from "../context/CartContext"
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${geist.className} antialiased`}>
-        <div className="max-w-[1400px] mx-auto">
-          {children}
-        </div>
+    <html lang="en">
+      <body className="bg-[#E8D8C3]">
+        <CartProvider>{children}</CartProvider>
       </body>
     </html>
-  );
+  )
 }

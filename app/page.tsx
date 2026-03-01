@@ -1,4 +1,25 @@
+"use client"
+
+import { products } from "../data/products"
+import ProductCard from "../components/ProductCard"
+import Cart from "../components/Cart"
+import { useState } from "react"
+
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+
+  const categories = [
+    { id: "cinnabons", label: "Cinnabons" },
+    { id: "savory", label: "Savory Pies" },
+    { id: "strudels", label: "Strudels" },
+    { id: "coffee", label: "Coffee" },
+    { id: "lemonades", label: "Lemonades" },
+  ]
+
+  const filteredProducts = selectedCategory
+    ? products.filter((p) => p.category === selectedCategory)
+    : []
+
   return (
     <main className="min-h-screen bg-[#E8D8C3] text-[#A0522D] relative">
 
@@ -16,69 +37,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MENU */}
+      {/* MENU + CART LAYOUT */}
       <section className="py-24 px-6 bg-white">
-        <div className="max-w-6xl mx-auto text-center mb-14">
-          <h2 className="text-4xl font-bold text-[#A0522D]">
-            Our Menu
-          </h2>
-        </div>
+        <div className="max-w-7xl mx-auto flex gap-12">
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+          {/* LEFT SIDE */}
+          <div className="flex-1">
 
-          {/* CINNABONS FIRST */}
-          <div className="p-8 rounded-2xl border border-[#F4A7B9]/40 bg-[#E8D8C3]">
-            <h3 className="text-2xl font-semibold mb-4">Cinnabons</h3>
-            <ul className="space-y-2 text-[#A0522D]/80">
-              <li>Classic (Bestseller)</li>
-              <li>Caramel</li>
-              <li>Berry</li>
-              <li>Chocolate</li>
-            </ul>
+            <div className="text-center mb-14">
+              <h2 className="text-4xl font-bold text-[#A0522D]">
+                Our Menu
+              </h2>
+            </div>
+
+            {/* CATEGORY GRID */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              {categories.map((cat) => (
+                <div
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`cursor-pointer p-8 rounded-2xl border transition
+                    ${
+                      selectedCategory === cat.id
+                        ? "bg-[#F4A7B9]/30 border-[#F4A7B9]"
+                        : "bg-[#E8D8C3] border-[#F4A7B9]/40 hover:bg-[#F4A7B9]/20"
+                    }`}
+                >
+                  <h3 className="text-2xl font-semibold">
+                    {cat.label}
+                  </h3>
+                </div>
+              ))}
+            </div>
+
+            {/* PRODUCTS LIST */}
+            {selectedCategory && (
+              <div className="mt-10">
+                <h3 className="text-3xl font-bold mb-8 text-[#A0522D]">
+                  {categories.find((c) => c.id === selectedCategory)?.label}
+                </h3>
+
+                <div className="space-y-8">
+                  {filteredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+                </div>
+              </div>
+            )}
+
           </div>
 
-          {/* SAVORY PIES SECOND */}
-          <div className="p-8 rounded-2xl border border-[#F4A7B9]/40 bg-[#E8D8C3]">
-            <h3 className="text-2xl font-semibold mb-4">Savory Pies</h3>
-            <ul className="space-y-2 text-[#A0522D]/80">
-              <li>Chicken, Mushroom & Cheese</li>
-              <li>Classic Cabbage</li>
-            </ul>
-          </div>
-
-          {/* STRUDELS */}
-          <div className="p-8 rounded-2xl border border-[#F4A7B9]/40 bg-[#E8D8C3]">
-            <h3 className="text-2xl font-semibold mb-4">Strudels</h3>
-            <ul className="space-y-2 text-[#A0522D]/80">
-              <li>Apple & Walnut</li>
-              <li>Chocolate & Walnut</li>
-              <li>Sweet Cheese & Cherry</li>
-            </ul>
-          </div>
-
-          {/* COFFEE */}
-          <div className="p-8 rounded-2xl border border-[#F4A7B9]/40 bg-[#E8D8C3]">
-            <h3 className="text-2xl font-semibold mb-4">Coffee</h3>
-            <ul className="space-y-2 text-[#A0522D]/80">
-              <li>Espresso</li>
-              <li>Americano</li>
-              <li>Cappuccino</li>
-              <li>Latte</li>
-              <li>Raf</li>
-            </ul>
-            <p className="mt-4 text-sm text-[#A0522D]/70">
-              Syrups available: caramel, vanilla, hazelnut.
-            </p>
-          </div>
-
-          {/* LEMONADES */}
-          <div className="p-8 rounded-2xl border border-[#F4A7B9]/40 bg-[#E8D8C3] md:col-span-2">
-            <h3 className="text-2xl font-semibold mb-4">Lemonades</h3>
-            <ul className="space-y-2 text-[#A0522D]/80">
-              <li>Classic</li>
-              <li>Mojito</li>
-              <li>Berry Mix</li>
-            </ul>
+          {/* RIGHT SIDE - STICKY CART */}
+          <div className="hidden lg:block w-96">
+            <Cart />
           </div>
 
         </div>
@@ -94,6 +105,15 @@ export default function Home() {
           <p className="text-lg text-[#A0522D]/80 mb-10">
             Order online, pay securely, and enjoy fresh pastries delivered to your door.
           </p>
+
+          <div className="bg-white rounded-2xl shadow-md p-8">
+            <p className="mb-4">
+              Delivery time: 60–90 minutes
+            </p>
+            <p>
+              Loyalty program: earn 5% points from every order
+            </p>
+          </div>
         </div>
       </section>
 
@@ -113,5 +133,5 @@ export default function Home() {
       </footer>
 
     </main>
-  );
+  )
 }
