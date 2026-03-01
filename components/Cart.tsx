@@ -2,30 +2,82 @@
 
 import { useCart } from "../context/CartContext"
 
-export default function Cart() {
-  const { cart, subtotal, delivery, total, increase, decrease, remove } =
-    useCart()
+export default function Cart({
+  isMobile = false,
+  onClose,
+}: {
+  isMobile?: boolean
+  onClose?: () => void
+}) {
+  const {
+    cart,
+    subtotal,
+    delivery,
+    total,
+    increase,
+    decrease,
+    remove,
+  } = useCart()
+
+  const loyaltyPoints = Math.floor(subtotal * 0.05)
+  const minOrderReached = subtotal >= 500
+  const freeDeliveryReached = subtotal >= 700
+  const remainingForFree = 700 - subtotal
 
   return (
-    <div className="w-80 bg-white p-6 shadow-lg sticky top-4 h-fit rounded-xl">
+    <div
+      className={`${
+        isMobile
+          ? "fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 p-6 overflow-y-auto transform transition-transform duration-300"
+          : "w-96 bg-white p-6 shadow-xl sticky top-6 h-fit rounded-2xl"
+      }`}
+    >
+      {isMobile && (
+        <button
+          onClick={onClose}
+          className="mb-4 text-sm text-[#A0522D]"
+        >
+          Close ✕
+        </button>
+      )}
+
       <h2 className="text-2xl text-[#A0522D] mb-4">Your Cart</h2>
 
-      {cart.length === 0 && <p>Your cart is empty 🍪</p>}
+      {cart.length === 0 && (
+        <p className="text-[#A0522D]/70">Your cart is empty 🍪</p>
+      )}
 
       {cart.map((item) => (
-        <div key={item.product.id} className="mb-4">
+        <div key={item.product.id} className="mb-4 border-b pb-3">
           <p className="font-semibold">{item.product.title}</p>
-          <div className="flex justify-between items-center">
-            <div>
-              <button onClick={() => decrease(item.product.id)}>-</button>
-              <span className="mx-2">{item.quantity}</span>
-              <button onClick={() => increase(item.product.id)}>+</button>
+
+          <div className="flex justify-between items-center mt-2">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => decrease(item.product.id)}
+                className="px-2 bg-gray-200 rounded"
+              >
+                -
+              </button>
+
+              <span>{item.quantity}</span>
+
+              <button
+                onClick={() => increase(item.product.id)}
+                className="px-2 bg-gray-200 rounded"
+              >
+                +
+              </button>
             </div>
-            <p>{item.product.price * item.quantity} RUB</p>
+
+            <p className="font-medium">
+              {item.product.price * item.quantity} RUB
+            </p>
           </div>
+
           <button
             onClick={() => remove(item.product.id)}
-            className="text-red-500 text-sm"
+            className="text-red-500 text-xs mt-1"
           >
             Remove
           </button>
@@ -35,11 +87,58 @@ export default function Cart() {
       {cart.length > 0 && (
         <>
           <hr className="my-4" />
+
           <p>Subtotal: {subtotal} RUB</p>
           <p>Delivery: {delivery} RUB</p>
-          <p className="text-lg font-bold text-[#4CAF50]">
+          {subtotal > 0 && (
+  <div className="mt-3">
+    <div className="w-full bg-gray-200 h-2 rounded-full">
+      <div
+        className="h-2 bg-[#4CAF50] rounded-full transition-all duration-300"
+        style={{
+          width: `${Math.min((subtotal / 700) * 100, 100)}%`,
+        }}
+      />
+    </div>
+  </div>
+)}
+
+          <p className="text-lg font-bold text-[#4CAF50] mt-2">
             Total: {total} RUB
           </p>
+
+          {!freeDeliveryReached && subtotal > 0 && (
+            <p className="text-sm text-[#A0522D]/70 mt-2">
+              Add {remainingForFree} RUB more for free delivery 🚚
+            </p>
+          )}
+
+          {freeDeliveryReached && (
+            <p className="text-sm text-[#4CAF50] mt-2">
+              You unlocked free delivery 🎉
+            </p>
+          )}
+
+          <p className="text-sm mt-2">
+            You will earn {loyaltyPoints} points
+          </p>
+
+          {!minOrderReached && subtotal > 0 && (
+            <p className="text-red-500 text-sm mt-2">
+              Minimum order is 500 RUB
+            </p>
+          )}
+
+          <button
+            disabled={!minOrderReached}
+            className={`mt-4 w-full py-3 rounded-lg text-white ${
+              minOrderReached
+                ? "bg-[#F4A7B9] hover:bg-[#A0522D]"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
+          >
+            Checkout
+          </button>
         </>
       )}
     </div>

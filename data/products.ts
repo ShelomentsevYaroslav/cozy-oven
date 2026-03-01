@@ -1,4 +1,14 @@
-export const products = [
+export type Product = {
+  id: string
+  category: "cinnabons" | "savory" | "strudels" | "coffee" | "lemonades"
+  title: string
+  description: string
+  price: number
+  image: string
+  bestseller?: boolean
+}
+
+export const products: Product[] = [
   // CINNABONS
   {
     id: "c1",
@@ -6,31 +16,32 @@ export const products = [
     title: "Classic Cinnabon",
     description: "Soft cinnamon roll with glaze",
     price: 180,
-    image: "/placeholder.jpg",
+    image: "/images/classiccinnabon.png",
+    bestseller: true,
   },
   {
     id: "c2",
     category: "cinnabons",
     title: "Chocolate Cinnabon",
-    description: "Cinnamon roll with chocolate filling",
+    description: "Chocolate filling with rich aroma",
     price: 220,
-    image: "/placeholder.jpg",
+    image: "/images/chocolatecinnabon.png",
   },
   {
     id: "c3",
     category: "cinnabons",
     title: "Caramel Cinnabon",
-    description: "Cinnamon roll with caramel topping",
+    description: "Caramel glaze and soft dough",
     price: 210,
-    image: "/placeholder.jpg",
+    image: "/images/caramelcinnabon.png",
   },
   {
     id: "c4",
     category: "cinnabons",
     title: "Berry Cinnabon",
-    description: "Cinnamon roll with berry glaze",
+    description: "Sweet berry topping",
     price: 200,
-    image: "/placeholder.jpg",
+    image: "/images/berrycinnabon.png",
   },
 
   // SAVORY PIES
@@ -38,17 +49,18 @@ export const products = [
     id: "s1",
     category: "savory",
     title: "Cabbage Pie",
-    description: "Traditional cabbage savory pie",
+    description: "Traditional cabbage pie",
     price: 190,
-    image: "/placeholder.jpg",
+    image: "/images/cabbagepie.png",
   },
   {
     id: "s2",
     category: "savory",
     title: "Chicken, Mushroom & Cheese Pie",
-    description: "Rich savory pie with chicken and mushrooms",
+    description: "Rich savory filling",
     price: 240,
-    image: "/placeholder.jpg",
+    image: "/images/chickenmushroomcheesepie.png",
+    bestseller: true,
   },
 
   // STRUDELS
@@ -56,25 +68,26 @@ export const products = [
     id: "st1",
     category: "strudels",
     title: "Apple Strudel",
-    description: "Classic apple strudel with cinnamon",
+    description: "Classic apple cinnamon",
     price: 190,
-    image: "/placeholder.jpg",
+    image: "/images/applestrudel.png",
   },
   {
     id: "st2",
     category: "strudels",
     title: "Cottage Cheese & Cherry Strudel",
-    description: "Sweet strudel with творог and cherry",
+    description: "Sweet cottage cheese & cherry filling",
     price: 210,
-    image: "/placeholder.jpg",
+    image: "/images/cottagecheesecherry.png",
+    bestseller: true,
   },
   {
     id: "st3",
     category: "strudels",
     title: "Chocolate & Walnut Strudel",
-    description: "Rich chocolate filling with crunchy walnuts",
+    description: "Chocolate with crunchy walnuts",
     price: 220,
-    image: "/placeholder.jpg",
+    image: "/images/chocolatewalnut.png",
   },
 
   // COFFEE
@@ -82,33 +95,34 @@ export const products = [
     id: "co1",
     category: "coffee",
     title: "Espresso",
-    description: "Strong and bold classic espresso",
+    description: "Strong classic espresso",
     price: 120,
-    image: "/placeholder.jpg",
+    image: "/images/espresso.png",
   },
   {
     id: "co2",
     category: "coffee",
     title: "Americano",
-    description: "Espresso with hot water",
+    description: "Smooth espresso with hot water",
     price: 150,
-    image: "/placeholder.jpg",
+    image: "/images/americano.png",
   },
   {
     id: "co3",
     category: "coffee",
     title: "Cappuccino",
-    description: "Espresso with steamed milk foam",
+    description: "Espresso with milk foam",
     price: 170,
-    image: "/placeholder.jpg",
+    image: "/images/cappuccino.png",
+    bestseller: true,
   },
   {
     id: "co4",
     category: "coffee",
     title: "Latte",
-    description: "Smooth milk coffee",
+    description: "Creamy milk coffee",
     price: 180,
-    image: "/placeholder.jpg",
+    image: "/images/latte.png",
   },
   {
     id: "co5",
@@ -116,7 +130,8 @@ export const products = [
     title: "Raf",
     description: "Creamy Russian-style coffee",
     price: 200,
-    image: "/placeholder.jpg",
+    image: "/images/raf.png",
+    bestseller: true,
   },
 
   // LEMONADES
@@ -124,24 +139,25 @@ export const products = [
     id: "l1",
     category: "lemonades",
     title: "Classic Lemon",
-    description: "Fresh lemonade with natural lemon",
+    description: "Fresh lemon taste",
     price: 150,
-    image: "/placeholder.jpg",
+    image: "/images/classiclemon.png",
   },
   {
     id: "l2",
     category: "lemonades",
     title: "Mojito Lemonade",
-    description: "Mint and lime refreshing drink",
+    description: "Mint & lime refreshing drink",
     price: 170,
-    image: "/placeholder.jpg",
+    image: "/images/mojito.png",
+    bestseller: true,
   },
   {
     id: "l3",
     category: "lemonades",
     title: "Berry Lemonade",
-    description: "Sweet and sour berry mix",
+    description: "Sweet berry mix",
     price: 180,
-    image: "/placeholder.jpg",
+    image: "/images/berrylemonade.png",
   },
 ]

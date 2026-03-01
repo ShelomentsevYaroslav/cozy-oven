@@ -8,8 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#E8D8C3]">
-        <CartProvider>{children}</CartProvider>
+      <body className="bg-[#E8D8C3] text-[#A0522D]">
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   )

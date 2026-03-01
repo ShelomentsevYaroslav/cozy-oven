@@ -4,9 +4,13 @@ import { products } from "../data/products"
 import ProductCard from "../components/ProductCard"
 import Cart from "../components/Cart"
 import { useState } from "react"
+import { useCart } from "../context/CartContext"
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [mobileCartOpen, setMobileCartOpen] = useState(false)
+  const { cart } = useCart()
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0)
 
   const categories = [
     { id: "cinnabons", label: "Cinnabons" },
@@ -17,8 +21,10 @@ export default function Home() {
   ]
 
   const filteredProducts = selectedCategory
-    ? products.filter((p) => p.category === selectedCategory)
-    : []
+  ? products
+      .filter((p) => p.category === selectedCategory)
+      .sort((a, b) => (b.bestseller ? 1 : 0) - (a.bestseller ? 1 : 0))
+  : []
 
   return (
     <main className="min-h-screen bg-[#E8D8C3] text-[#A0522D] relative">
@@ -29,6 +35,18 @@ export default function Home() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Cozy Oven Bakery
           </h1>
+          <button
+  onClick={() => setMobileCartOpen(true)}
+  className="lg:hidden fixed top-6 right-6 bg-[#4CAF50] text-white px-4 py-2 rounded-full shadow-lg z-40 flex items-center gap-2"
+>
+  Cart
+
+  {totalItems > 0 && (
+    <span className="bg-white text-[#4CAF50] text-xs px-2 py-1 rounded-full">
+      {totalItems}
+    </span>
+  )}
+</button>
 
           <p className="text-lg md:text-xl mb-8 text-[#A0522D]/80">
             Fresh handmade pastries in the heart of Tyumen.
@@ -124,6 +142,44 @@ export default function Home() {
       >
         Order Now
       </a>
+      {mobileCartOpen && (
+  <>
+    <div
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300"
+      onClick={() => setMobileCartOpen(false)}
+    />
+
+    <div className="transform transition-transform duration-300 translate-x-0">
+      <Cart
+        isMobile
+        onClose={() => setMobileCartOpen(false)}
+      />
+    </div>
+  </>
+)}
+<section className="py-24 bg-white">
+  <div className="max-w-6xl mx-auto px-6">
+    <h2 className="text-3xl font-bold text-center mb-6">
+      Find Us in Central Tyumen
+    </h2>
+
+    <p className="text-center text-[#A0522D]/70 mb-8">
+      We are located in the heart of Tyumen, close to main streets and universities.
+    </p>
+
+    <div className="rounded-2xl overflow-hidden shadow-lg border border-[#F4A7B9]/30">
+      <iframe
+        src="https://maps.google.com/maps?q=Tyumen&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        className="w-full h-[400px]"
+        loading="lazy"
+      />
+    </div>
+
+    <p className="text-center mt-6">
+      Phone: +70000000000
+    </p>
+  </div>
+</section>
 
       {/* FOOTER */}
       <footer className="py-12 text-center border-t border-[#F4A7B9]/40 text-[#A0522D]">
