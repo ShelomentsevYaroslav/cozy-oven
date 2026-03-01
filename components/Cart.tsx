@@ -14,6 +14,9 @@ export default function Cart({
     subtotal,
     delivery,
     total,
+    bonusBalance,
+    bonusUsed,
+    toggleUseBonuses,
     increase,
     decrease,
     remove,
@@ -28,7 +31,7 @@ export default function Cart({
     <div
       className={`${
         isMobile
-          ? "fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 p-6 overflow-y-auto transform transition-transform duration-300"
+          ? "fixed right-0 top-0 h-full w-96 bg-white shadow-2xl z-50 p-6 overflow-y-auto"
           : "w-96 bg-white p-6 shadow-xl sticky top-6 h-fit rounded-2xl"
       }`}
     >
@@ -90,20 +93,45 @@ export default function Cart({
 
           <p>Subtotal: {subtotal} RUB</p>
           <p>Delivery: {delivery} RUB</p>
-          {subtotal > 0 && (
-  <div className="mt-3">
-    <div className="w-full bg-gray-200 h-2 rounded-full">
-      <div
-        className="h-2 bg-[#4CAF50] rounded-full transition-all duration-300"
-        style={{
-          width: `${Math.min((subtotal / 700) * 100, 100)}%`,
-        }}
-      />
-    </div>
-  </div>
-)}
 
-          <p className="text-lg font-bold text-[#4CAF50] mt-2">
+          {subtotal > 0 && (
+            <div className="mt-3">
+              <div className="w-full bg-gray-200 h-2 rounded-full">
+                <div
+                  className="h-2 bg-[#4CAF50] rounded-full transition-all duration-300"
+                  style={{
+                    width: `${Math.min((subtotal / 700) * 100, 100)}%`,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* BONUS BLOCK */}
+          <div className="mt-4 p-3 bg-[#E8D8C3] rounded-lg">
+            <p className="text-sm">
+              Your bonuses: <strong>{bonusBalance}</strong>
+            </p>
+
+            <p className="text-sm">
+              Max usable (30%): {Math.floor(subtotal * 0.3)}
+            </p>
+
+            <button
+              onClick={toggleUseBonuses}
+              className="mt-2 w-full py-2 bg-[#4CAF50] text-white rounded-lg hover:opacity-90 transition"
+            >
+              Use bonus points
+            </button>
+
+            {bonusUsed > 0 && (
+              <p className="text-sm text-[#4CAF50] mt-2">
+                −{bonusUsed} RUB applied
+              </p>
+            )}
+          </div>
+
+          <p className="text-lg font-bold text-[#4CAF50] mt-3">
             Total: {total} RUB
           </p>
 
@@ -131,6 +159,12 @@ export default function Cart({
 
           <button
             disabled={!minOrderReached}
+            onClick={() => {
+              if (!minOrderReached) return
+              document
+                .getElementById("checkout")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }}
             className={`mt-4 w-full py-3 rounded-lg text-white ${
               minOrderReached
                 ? "bg-[#F4A7B9] hover:bg-[#A0522D]"
