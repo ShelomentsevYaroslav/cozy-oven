@@ -50,7 +50,7 @@ export default function Home() {
 
           <div className="relative w-full h-[450px]">
             <Image
-              src="/images/bakery.png"
+              src="/images/bakery.webp"
               alt="Cozy Oven Bakery interior"
               fill
               priority
