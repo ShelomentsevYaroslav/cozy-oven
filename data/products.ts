@@ -16,7 +16,7 @@ export const products: Product[] = [
     title: "Classic Cinnabon",
     description: "Soft cinnamon roll with glaze",
     price: 180,
-    image: "/images/classiccinnabon.png",
+    image: "/images/classiccinnabon.webp",
     bestseller: true,
   },
   {
@@ -25,7 +25,7 @@ export const products: Product[] = [
     title: "Chocolate Cinnabon",
     description: "Chocolate filling with rich aroma",
     price: 220,
-    image: "/images/chocolatecinnabon.png",
+    image: "/images/chocolatecinnabon.webp",
   },
   {
     id: "c3",
@@ -33,7 +33,7 @@ export const products: Product[] = [
     title: "Caramel Cinnabon",
     description: "Caramel glaze and soft dough",
     price: 210,
-    image: "/images/caramelcinnabon.png",
+    image: "/images/caramelcinnabon.webp",
   },
   {
     id: "c4",
@@ -41,7 +41,7 @@ export const products: Product[] = [
     title: "Berry Cinnabon",
     description: "Sweet berry topping",
     price: 200,
-    image: "/images/berrycinnabon.png",
+    image: "/images/berrycinnabon.webp",
   },
 
   // SAVORY PIES
@@ -51,7 +51,7 @@ export const products: Product[] = [
     title: "Cabbage Pie",
     description: "Traditional cabbage pie",
     price: 190,
-    image: "/images/cabbagepie.png",
+    image: "/images/cabbagepie.webp",
   },
   {
     id: "s2",
@@ -59,7 +59,7 @@ export const products: Product[] = [
     title: "Chicken, Mushroom & Cheese Pie",
     description: "Rich savory filling",
     price: 240,
-    image: "/images/chickenmushroomcheesepie.png",
+    image: "/images/chickenmushroomcheesepie.webp",
     bestseller: true,
   },
 
@@ -70,7 +70,7 @@ export const products: Product[] = [
     title: "Apple Strudel",
     description: "Classic apple cinnamon",
     price: 190,
-    image: "/images/applestrudel.png",
+    image: "/images/applestrudel.webp",
   },
   {
     id: "st2",
@@ -78,7 +78,7 @@ export const products: Product[] = [
     title: "Cottage Cheese & Cherry Strudel",
     description: "Sweet cottage cheese & cherry filling",
     price: 210,
-    image: "/images/cottagecheesecherry.png",
+    image: "/images/cottagecheesecherry.webp",
     bestseller: true,
   },
   {
@@ -87,7 +87,7 @@ export const products: Product[] = [
     title: "Chocolate & Walnut Strudel",
     description: "Chocolate with crunchy walnuts",
     price: 220,
-    image: "/images/chocolatewalnut.png",
+    image: "/images/chocolatewalnut.webp",
   },
 
   // COFFEE
@@ -97,7 +97,7 @@ export const products: Product[] = [
     title: "Espresso",
     description: "Strong classic espresso",
     price: 120,
-    image: "/images/espresso.png",
+    image: "/images/espresso.webp",
   },
   {
     id: "co2",
@@ -105,7 +105,7 @@ export const products: Product[] = [
     title: "Americano",
     description: "Smooth espresso with hot water",
     price: 150,
-    image: "/images/americano.png",
+    image: "/images/americano.webp",
   },
   {
     id: "co3",
@@ -113,7 +113,7 @@ export const products: Product[] = [
     title: "Cappuccino",
     description: "Espresso with milk foam",
     price: 170,
-    image: "/images/cappuccino.png",
+    image: "/images/cappuccino.webp",
     bestseller: true,
   },
   {
@@ -122,7 +122,7 @@ export const products: Product[] = [
     title: "Latte",
     description: "Creamy milk coffee",
     price: 180,
-    image: "/images/latte.png",
+    image: "/images/latte.webp",
   },
   {
     id: "co5",
@@ -130,7 +130,7 @@ export const products: Product[] = [
     title: "Raf",
     description: "Creamy Russian-style coffee",
     price: 200,
-    image: "/images/raf.png",
+    image: "/images/raf.webp",
     bestseller: true,
   },
 
@@ -141,7 +141,7 @@ export const products: Product[] = [
     title: "Classic Lemon",
     description: "Fresh lemon taste",
     price: 150,
-    image: "/images/classiclemon.png",
+    image: "/images/classiclemon.webp",
   },
   {
     id: "l2",
@@ -149,7 +149,7 @@ export const products: Product[] = [
     title: "Mojito Lemonade",
     description: "Mint & lime refreshing drink",
     price: 170,
-    image: "/images/mojito.png",
+    image: "/images/mojito.webp",
     bestseller: true,
   },
   {
@@ -158,6 +158,6 @@ export const products: Product[] = [
     title: "Berry Lemonade",
     description: "Sweet berry mix",
     price: 180,
-    image: "/images/berrylemonade.png",
+    image: "/images/berrylemonade.webp",
   },
 ]
