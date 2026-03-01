@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useCart } from "../context/CartContext"
 import { Product } from "../data/products"
 
@@ -20,17 +21,24 @@ export default function ProductCard({ product }: { product: Product }) {
       )}
 
       {/* Image wrapper */}
-      <div className="w-full bg-[#E8D8C3] rounded-xl mb-4 overflow-hidden flex items-center justify-center">
-        <img
-          src={product.image}
-          alt={product.title}
-          className={`object-contain ${
+      <div className="w-full bg-[#E8D8C3] rounded-xl mb-4 overflow-hidden">
+        <div
+          className={`relative w-full ${
             product.category === "coffee" ||
             product.category === "lemonades"
               ? "aspect-square"
               : "aspect-[4/3]"
           }`}
-        />
+        >
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
+            className="object-contain"
+            priority={product.bestseller}
+          />
+        </div>
       </div>
 
       {/* Title */}
